@@ -33,7 +33,7 @@ class DB_Model:
     def does_host_exist(self, ident):
         hosts = self.get_hosts()
         for host in hosts:
-            if host.ident = ident:
+            if host.ident == ident:
                 return True
         return False
 
@@ -72,6 +72,25 @@ class DB_Model:
         if port_list is None:
             port_list = []
         return port_list
+
+
+    #Scanning stuff
+    def scan_host(self, host_ip):
+        print("scanning: " +host_ip)
+
+
+    def scan(self):
+        hosts = self.get_hosts()
+        for host in hosts:
+            self.scan_host(host.ip)
+
+    def discover_network(self):
+        print("discovering network")
+
+
+    def run_scan(self, scan_text):
+        print("running: " + scan_text)
+
 
 
 

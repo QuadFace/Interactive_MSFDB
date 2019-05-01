@@ -140,17 +140,19 @@ def create_app(test_config=None):
 
     @app.route('/discover_network', methods=['POST'])
     def discover():
-        print("discovering network")
+        host_database.discover_network()
         return "success"
 
     @app.route('/scan/<scan_text>', methods=['POST'])
     def scan(scan_text):
-        print(scan_text)
-
-        request_data = request.get_json()
-        print(request_data)
-        # return request_data['host_id'] + " : " + request_data['comment']
+        host_database.run_scan(scan_text)
         return "success"
+
+    @app.route('/scan_host/<host_ip>', methods=['POST'])
+    def scan_host(host_ip):
+        host_database.scan_host(host_ip)
+        return "success"
+
     return app
 
 
